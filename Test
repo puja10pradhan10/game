@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GAME</title>
+<style>
+	table, tr, td {
+    border: 2px solid;
+    width: auto;
+    height: auto;
+	border-collapse: collapse;
+	}
+	button {
+    width: 100px;
+    height: 100px;
+    margin-top: 0px;
+    margin-left: 0px;
+	background-color: #FFD700;
+	border-radius: 15px;
+	border: 2px solid;
+	font-weight: bold;
+	font-size:20px;
+	}
+	
+</style>
+<script>
+	var number = prompt("Please enter a number:");
+	var Btnid=1;
+	document.write('<table>');
+    for (r=1; r <= number; r++) {
+		document.write("<tr>");
+		for(c=1; c<=number; c++) {
+		document.write('<td><button id='+Btnid+' onclick="myClick('+Btnid+')"></button></td>');
+		Btnid++;
+		};
+		document.write("</tr>");
+	};
+	document.write('</table>');
+	var i="X";
+	function myClick(Btnid) {
+	
+		if(i=="X") {
+			i="O";
+		}
+		else {
+		
+			i="X";
+		}
+		var k=document.getElementById(Btnid);
+		k.value=i;
+		k.innerHTML=i;
+		k.disabled=true;
+		WinXHorizontal(Btnid);
+		WinOHorizontal(Btnid);
+		WinXVertical(Btnid);
+		WinOVertical(Btnid);
+		WinXDiagonal(Btnid);
+		WinODiagonal(Btnid);
+	};
+	
+	<!--- For "X" Check Horizontal -->	
+		
+	function WinXHorizontal(Btnid) {
+		var check1=0;
+		for (var a=0;a<number ;a++) {
+			for(var b=0;b<number ;b++) {
+				var hzx=a*number+b;
+				if(('X'== document.getElementById(++hzx).value)) {
+				check1++;
+				}
+			}
+				if(check1==number) {
+				break;
+				}
+				else {
+				check1=0;
+				}
+		}
+		if(check1==number) {
+				alert("X Win");
+				reset();
+		}
+	}		
+	<!--- For "O" Check Horizontal -->	
+	function WinOHorizontal(Btnid) {
+		var check2=0;
+		for (var a=0;a<number ;a++) {
+			for(var b=0;b<number ;b++) {
+				var hzo=a*number+b;
+				if(('O'== document.getElementById(++hzo).value)) {
+				check2++;
+				}
+			}
+				if(check2==number) {
+				break;
+				}
+				else {
+				check2=0;
+				}
+		}
+		if(check2==number) {
+				alert("O Win");
+				reset();
+		}
+	}	
+	<!--- For "X" Check Vertical -->
+	function WinXVertical(Btnid) {
+		var check3=0;
+		for (var a=0;a<number ;a++) {
+			for(var b=0;b<number ;b++) {
+				var vzx=b*number+a;
+				if(('X'== document.getElementById(++vzx).value)) {
+				check3++;
+				}
+			}
+				if(check3==number) {
+				break;
+				}
+				else {
+				check3=0;
+				}
+		}
+		
+		if(check3==number) {
+			alert("X Win");
+			reset();
+		}
+	}	
+	<!--- For "O" Check Vertical -->
+	function WinOVertical(Btnid) {
+		var check4=0;
+		for (var a=0;a<number ;a++) {
+			for(var b=0;b<number ;b++) {
+				var vzo=b*number+a;
+				if(('O'== document.getElementById(++vzo).value)) {
+				check4++;
+				}
+			}
+				if(check4==number) {
+				break;
+				}
+				else {
+				check4=0;
+				}
+		}
+		
+		if(check4==number) {
+			alert("O Win");
+			reset();
+		}
+	}	
 
+		
+	<!-- For "X" Check Diagonal -->
+	function WinXDiagonal(Btnid) {
+		var check5=0;
+		for (var a=0, b=(number-1) ;a<number ;a++, b--) {
+				var dzx1=a*number+a;
+				var dzx2=a*number+b;
+				if(('X'== document.getElementById(++dzx1).value) || ('X'== document.getElementById(++dzx2).value)) {
+				check5++;
+				}
+				else if(check5==number) {
+				break;
+				}
+				else {
+				check5=0;
+				}
+		}
+		
+		if(check5==number) {
+			alert("X Win");
+			reset();
+		}
+	}
+	<!-- For "O" Check Diagonal -->
+	function WinODiagonal(Btnid) {
+		var check6=0;
+		for (var a=0, b=(number-1) ;a<number ;a++, b--) {
+				var dzo1=a*number+a;
+				var dzo2=a*number+b;
+				if(('O'== document.getElementById(++dzo1).value) || ('O'== document.getElementById(++dzo2).value)) {
+				check6++;
+				}
+				else if(check6==number) {
+				break;
+				}
+				else {
+				check6=0;
+				}
+		}
+		
+		if(check6==number) {
+			alert("O Win");
+			reset();
+		}
+	}
+	
+	<!-- Reset The Game & Game Over -->
+	function reset() {
+		location.reload();
+	}	
+</script>
+</head>
+<body>
+</body>
+</html>
